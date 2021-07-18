@@ -10,3 +10,5 @@ deriv_root = pathlib.Path("/storage/store2/derivatives/CHBMP_EEG_and_MRI/")
 ch_types = ['eeg']
 
 conditions = ['rest']
+
+N_JOBS = 20

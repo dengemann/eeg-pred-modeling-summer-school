@@ -34,4 +34,4 @@ df['montage'] = 'small'
 
 df.loc[df.EEGChannelCount > 62, 'montage'] = 'big'
 df['gender_code'] = df['Gender'].map({"F": 1, "M": 2})
-df.groupby('montage')['Age', 'Gender', 'Weigh lb']
+df.groupby('montage')['Age', 'gender_code', 'Weight lb'].mean()
