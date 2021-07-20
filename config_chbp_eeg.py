@@ -25,6 +25,8 @@ eeg_template_montage.rename_channels(
 l_freq = 0.1
 h_freq = 49
 
+eeg_reference = []
+
 eog_channels = ['EOI', 'EOD']
 
 find_breaks = False
