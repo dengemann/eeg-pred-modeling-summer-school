@@ -6,7 +6,8 @@ study_name = 'age-prediction-benchmark'
 bids_root = pathlib.Path(
     "/storage/store2/data/CHBMP_EEG_and_MRI/ds_bids_chbmp/")
 
-deriv_root = pathlib.Path("/storage/store2/derivatives/CHBMP_EEG_and_MRI/")
+deriv_root = pathlib.Path(
+    "/storage/store2/derivatives/eeg-pred-modeling-summer-school/")
 
 demo_root = pathlib.Path('/storage/store2/data/CHBMP_Cognitive_Scales')
 
@@ -17,8 +18,9 @@ ch_types = ['eeg']
 
 eeg_template_montage = mne.channels.make_standard_montage(
     'standard_1005'
-).rename_channels(
-    {'FFT7h': 'FFC7h', 'FFT8h': 'FFC8h'})
+)
+eeg_template_montage.rename_channels(
+        {'FFT7h': 'FFC7h', 'FFT8h': 'FFC8h'})
 
 l_freq = 0.1
 h_freq = 49
@@ -29,24 +31,35 @@ find_breaks = False
 
 spatial_filter = None
 
-reject = 'autoreject_global'
+reject = None
 
 on_error = 'abort'
 on_rename_missing_events = 'warn'
 
-N_JOBS = 10
+N_JOBS = 20
 
 epochs_tmin = 0
 epochs_tmax = 10
 baseline = None
 
 rename_events = {
-    "ojos abiertos": "eyes/open",
-    "ojos cerrados": "eyes/closed",
-    "hiperventilacion 1": "hyperventilation/1",
-    "hiperventilacion 2": "hyperventilation/2",
-    "hiperventilacion 3": "hyperventilation/3",
-    "photic stimulation": "vis"
+    'artefacto': 'artefact',
+    'discontinuity': 'discontinuity',
+    'electrodes artifacts': 'artefact',
+    'eyes closed': 'eyes/closed',
+    'eyes opened': 'eyes/open',
+    'fotoestimulacion': 'photic_stimulation',
+    'hiperventilacion 1': 'hyperventilation/1',
+    'hiperventilacion 2': 'hyperventilation/2',
+    'hiperventilacion 3': 'hyperventilation/3',
+    'hyperventilation 1': 'hyperventilation/1',
+    'hyperventilation 2': 'hyperventilation/2',
+    'hyperventilation 3': 'hyperventilation/3',
+    'ojos abiertos': 'eyes/closed',
+    'ojos cerrados': 'eyes/closed',
+    'photic stimulation': 'photic_stimulation',
+    'recuperacion': 'recovery',
+    'recuperation': 'recovery'
 }
 
 conditions = ["eyes/open", "eyes/closed"]
