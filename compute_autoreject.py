@@ -30,12 +30,22 @@ def run_subject(subject):
         return 'no event'
     epochs = epochs['eyes']
     epochs.pick_channels(df_common_names.name.values)
-    reject = autoreject.get_rejection_threshold(
-        epochs=epochs, ch_types=['eeg'], decim=1,
-        verbose=False
-    )
+
+    if True:
+        ar = autoreject.AutoReject(n_jobs=1, cv=5)
+        epochs = ar.fit_transform(epochs)
+
+    if False:
+        reject = autoreject.get_rejection_threshold(
+            epochs=epochs, ch_types=['eeg'], decim=1,
+            verbose=False
+        )
+        epochs.drop_bad(reject)
+
     out_fname = deriv_root / subject / \
         'eeg' / f'{subject}_task-protmap_proc-clean-pick-ar_epo.fif'
+
+    epochs.set_eeg_reference('average')
     epochs.save(out_fname, overwrite=True)
     return ok
 

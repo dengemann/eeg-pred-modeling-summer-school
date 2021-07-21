@@ -45,12 +45,12 @@ def run_subject(subject, condition):
 
 
 for condition in ('closed', 'open'):
-    out = {sub: ff for sub, ff in zip(subjects, features)
-          if not isinstance(ff, str)}
-
     features = Parallel(n_jobs=N_JOBS)(
         delayed(run_subject)(sub, condition=f'eyes/{condition}')
         for sub in subjects)
+
+    out = {sub: ff for sub, ff in zip(subjects, features)
+           if not isinstance(ff, str)}
 
     mne.externals.h5io.write_hdf5(
         f'./outputs/features_eyes-{condition}.h5', out, overwrite=True)

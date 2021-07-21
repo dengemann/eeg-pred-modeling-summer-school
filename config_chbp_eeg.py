@@ -38,7 +38,7 @@ reject = None
 on_error = 'abort'
 on_rename_missing_events = 'warn'
 
-N_JOBS = 20
+N_JOBS = 30
 
 epochs_tmin = 0
 epochs_tmax = 10
