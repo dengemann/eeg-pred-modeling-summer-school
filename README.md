@@ -2,9 +2,17 @@
 Age prediction benchmark project
 
 
+## Notebooks
+
+Check out:
+
+1. `plot_eeg_features_and_build_a_simple_model.ipynb`
+
+## Computing the intermediate outputs
+
 To run the code please consider the following instructions.
 
-## Dependencies
+### Dependencies
 
 1. MNE stable: https://mne.tools/stable/install/index.html
 	
@@ -22,7 +30,7 @@ To run the code please consider the following instructions.
   
 *Note*: the bids pipeline is a bit different from other packages. Instead of installing it as a library it is more like a collection of scripts. Installing it means cloning the GitHub repository and making sure the dependencies are met (link above).
 
-## Running the code
+### Running the code
 
 Assuming that `mne-bids-pipeline` is downloaded in the parent directory of this repository you can kick-off the preprocessing like:
 
