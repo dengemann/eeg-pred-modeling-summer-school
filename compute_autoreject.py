@@ -45,7 +45,7 @@ def run_subject(subject):
     out_fname = deriv_root / subject / \
         'eeg' / f'{subject}_task-protmap_proc-clean-pick-ar_epo.fif'
 
-    epochs.set_eeg_reference('average')
+    # epochs.set_eeg_reference('average')
     epochs.save(out_fname, overwrite=True)
     return ok
 
