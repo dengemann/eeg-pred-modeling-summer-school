@@ -36,7 +36,8 @@ def run_subject(subject, condition):
         return 'no condition'
 
     features = coffeine.compute_features(
-        epochs, n_fft=1024, n_overlap=512, fs=epochs.info['sfreq'],
+        epochs[condition],
+        n_fft=1024, n_overlap=512, fs=epochs.info['sfreq'],
         fmax=49, frequency_bands=frequency_bands)
     out = {}
     out.update(features[0])
@@ -54,3 +55,8 @@ for condition in ('closed', 'open'):
 
     mne.externals.h5io.write_hdf5(
         f'./outputs/features_eyes-{condition}.h5', out, overwrite=True)
+
+    logging = ['OK' if not isinstance(ff, str) else ff for sub, ff in
+               zip(subjects, features)]
+    out_log = pd.DataFrame({"ok": logging, "subject": subjects})
+    out_log.to_csv(f'./outputs/feature_eyes-{condition}-log.csv')
